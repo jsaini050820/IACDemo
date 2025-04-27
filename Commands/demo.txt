@@ -1,0 +1,34 @@
+terraform -v
+az version
+pulumi version
+python --version
+
+---Terraform
+
+terraform init
+terraform apply
+
+---- pulumi
+mkdir s3-pulumi
+cd s3-pulumi
+pulumi new aws-python
+pulumi login --local
+pulumi up
+
+---Bicep
+
+az deployment group create --resource-group <rgname> --template-file main.bicep 
+--parameters adminPassword='P@ssword123!' 
+subnetId='/subscriptions/fed8276b-9025-4aba-a71d-99c776b0c7ab/resourceGroups/<rgname>/
+providers/Microsoft.Network/virtualNetworks/<vnetname>/subnets/default'
+
+
+-------list vnet in RG
+az network vnet list --resource-group <rgname> --output table
+
+------create vnet
+az network vnet create --resource-group <rgname> --name <vnetname> 
+--address-prefix 10.0.0.0/16 --subnet-name default --subnet-prefix 10.0.0.0/24
+
+
+
